@@ -1,0 +1,22 @@
+pyttsx3
+speechRecognition
+requests
+plyer
+bs4
+python-vlc
+pytube
+pyaudio
+def get_weather(location="Bangalore"):
+    try:
+        # Use wttr.in to fetch weather information
+        url = f"https://wttr.in/{location}?format=j1"  # JSON format for structured data
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            weather_condition = data['current_condition'][0]['weatherDesc'][0]['value']
+            temperature = data['current_condition'][0]['temp_C']  # Temperature in Celsius
+            return weather_condition, temperature
+        else:
+            return "Unable to fetch data", "N/A"
+    except Exception as e:
+        return "Error occurred", "N/A"
